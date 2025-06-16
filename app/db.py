@@ -3,8 +3,7 @@
 import os
 import urllib
 
-from sqlmodel import SQLModel, Session, create_engine
-from tenacity import retry, stop_after_attempt, wait_fixed
+from sqlmodel import Session, create_engine
 
 from dotenv import load_dotenv
 
