@@ -1,0 +1,15 @@
+annotated-types
+anyio
+fastapi[standard]
+idna
+pydantic
+pydantic_core
+pyodbc
+python-dotenv
+sniffio
+SQLAlchemy
+sqlmodel
+starlette
+tenacity
+typing-inspection
+typing_extensions

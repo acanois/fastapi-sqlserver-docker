@@ -1,0 +1,38 @@
+version: "3.9"
+
+services:
+  backend:
+    build: ./app
+    ports:
+      - "8000:80"
+    depends_on:
+      sqlserver:
+        condition: service_healthy
+    environment:
+      - DB_SERVER=${DB_SERVER}
+      - DB_NAME=${DB_NAME}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+    networks:
+      - app-network
+
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      MSSQL_SA_PASSWORD: ${DB_PASSWORD}
+      DB_SERVER: ${DB_SERVER}
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD", "bash", "-c", "</dev/tcp/${DB_SERVER}/1433"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+      
+networks:
+  app-network:
+    driver: bridge
