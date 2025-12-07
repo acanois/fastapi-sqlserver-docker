@@ -1,5 +1,5 @@
 # Use amd64 base
-FROM --platform=linux/amd64 python:3.11-bookworm
+FROM --platform=linux/amd64 python:3.10-bookworm
 
 WORKDIR /src
 

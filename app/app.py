@@ -11,7 +11,6 @@ from sqlmodel import Session, SQLModel
 
 from .db import get_session, engine
 
-
 SessionDep = Annotated[Session, Depends(get_session)]
 
 
